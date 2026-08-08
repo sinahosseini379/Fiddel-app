@@ -42,7 +42,7 @@ jobs:
       TARGET_NAME_aab: "Fiddel-Android"
     steps:
       - uses: actions/checkout@v6
-      - uses: subosito/[email protected] #issue with 2.13
+      - uses: subosito/flutter-action@v2.21.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
@@ -155,7 +155,7 @@ jobs:
       #     flutter-version: ${{ env.FLUTTER_VERSION }}
 
       - name: Setup Flutter
-        uses: subosito/[email protected] #issue with 2.13
+        uses: subosito/flutter-action@v2.21.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           # flutter-version-file: pubspec.yaml
