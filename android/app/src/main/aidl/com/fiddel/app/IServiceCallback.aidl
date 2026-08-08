@@ -1,4 +1,4 @@
-package com.hiddify.hiddify;
+package com.fiddel.app;
 
 interface IServiceCallback {
   void onServiceStatusChanged(int status);

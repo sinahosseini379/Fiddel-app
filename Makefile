@@ -286,6 +286,11 @@ android-aab-release:
 
 windows-release: windows-zip-release windows-exe-release windows-msix-release
 
+# MSIX is only needed for the Microsoft Store and requires a signing certificate
+# (windows/sign.pfx, from the WINDOWS_SIGNING_KEY secret). Installer + portable
+# builds need no certificate, so CI uses this target unless the secret is set.
+windows-release-unsigned: windows-zip-release windows-exe-release
+
 windows-zip-release:
 	fastforge package \
 	  --platform windows \

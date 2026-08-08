@@ -1,6 +1,6 @@
-package com.hiddify.hiddify;
+package com.fiddel.app;
 
-import com.hiddify.hiddify.IServiceCallback;
+import com.fiddel.app.IServiceCallback;
 
 interface IService {
   int getStatus();

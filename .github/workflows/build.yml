@@ -96,11 +96,11 @@ jobs:
             targets: aab
 
           - platform: windows
-            release_target: windows-release
+            release_target: windows-release-unsigned
             install_deps_target: windows-install-deps
             os: windows-latest
             aarch: amd64
-            targets: exe,msix,zip
+            targets: exe,zip
 
           - platform: linux
             release_target: linux-release
