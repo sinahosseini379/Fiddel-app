@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:fiddel/core/localization/translations.dart';
 import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
 import 'package:fiddel/utils/utils.dart';
 
-class ConfigTile extends StatelessWidget {
+class ConfigTile extends ConsumerWidget {
   final TestResult config;
   final int index;
   final bool showCountry;
@@ -17,9 +18,9 @@ class ConfigTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final t = translations(context);
+    final t = ref.watch(translationsProvider).requireValue;
 
     return Card(
       child: Padding(

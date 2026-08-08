@@ -7,6 +7,7 @@ import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:fiddel/features/settings/overview/settings_page.dart';
 import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fiddel/features/fiddel_tester/notifier/tester_notifier.dart';
 
 class FiddelTesterOverview extends HookConsumerWidget {
   const FiddelTesterOverview({super.key});
@@ -33,7 +34,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
         children: [
           _buildHeader(context, t),
           const Gap(24),
-          _buildQuickActions(context, t),
+          _buildQuickActions(context, ref, t),
           const Gap(24),
           _buildSubscriptionList(context, ref, t),
           const Gap(24),
@@ -94,7 +95,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
     );
   }
 
-  Widget _buildQuickActions(BuildContext context, TranslationsEn t) {
+  Widget _buildQuickActions(BuildContext context, WidgetRef ref, TranslationsEn t) {
     final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +123,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
                 title: t.fiddelTester.addSubscription,
                 subtitle: t.fiddelTester.addSubscriptionDesc,
                 color: theme.colorScheme.secondary,
-                onTap: () => _showAddSubscriptionDialog(context),
+                onTap: () => _showAddSubscriptionDialog(context, ref),
               ),
             ),
           ],
@@ -132,6 +133,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
   }
 
   Widget _buildSubscriptionList(BuildContext context, WidgetRef ref, TranslationsEn t) {
+    final theme = Theme.of(context);
     final state = ref.watch(testerNotifierProvider);
     
     if (state.subscriptions.isEmpty) {
@@ -147,7 +149,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
               Text(t.fiddelTester.noSubscriptionsDesc, style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
               const Gap(16),
               FilledButton.icon(
-                onPressed: () => _showAddSubscriptionDialog(context),
+                onPressed: () => _showAddSubscriptionDialog(context, ref),
                 icon: const Icon(Icons.add_rounded),
                 label: Text(t.fiddelTester.addSubscription),
               ),
@@ -168,6 +170,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
   }
 
   Widget _buildLastResult(BuildContext context, WidgetRef ref, TranslationsEn t) {
+    final theme = Theme.of(context);
     final state = ref.watch(testerNotifierProvider);
     final result = state.lastResult;
 
@@ -222,7 +225,7 @@ class FiddelTesterOverview extends HookConsumerWidget {
     );
   }
 
-  void _showAddSubscriptionDialog(BuildContext context) {
+  void _showAddSubscriptionDialog(BuildContext context, WidgetRef ref) {
     final nameCtrl = TextEditingController();
     final urlCtrl = TextEditingController();
     
@@ -302,13 +305,13 @@ class _ActionCard extends StatelessWidget {
   }
 }
 
-class _SubscriptionCard extends StatelessWidget {
+class _SubscriptionCard extends ConsumerWidget {
   final SubscriptionSource sub;
 
   const _SubscriptionCard({required this.sub});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Card(
       margin: const EdgeInsets.only(bottom: 8),

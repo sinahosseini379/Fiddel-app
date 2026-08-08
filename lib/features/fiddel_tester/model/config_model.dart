@@ -71,7 +71,7 @@ sealed class ProxyConfig with _$ProxyConfig {
 
 extension ProxyConfigX on ProxyConfig {
   String get scheme {
-    return when(
+    return map(
       vless: (_) => 'vless',
       vmess: (_) => 'vmess',
       trojan: (_) => 'trojan',
@@ -80,7 +80,7 @@ extension ProxyConfigX on ProxyConfig {
     );
   }
 
-  String get displayName => when(
+  String get displayName => map(
     vless: (c) => c.name,
     vmess: (c) => c.name,
     trojan: (c) => c.name,
@@ -88,7 +88,7 @@ extension ProxyConfigX on ProxyConfig {
     hysteria2: (c) => c.name,
   );
 
-  String get server => when(
+  String get server => map(
     vless: (c) => c.server,
     vmess: (c) => c.server,
     trojan: (c) => c.server,
@@ -96,7 +96,7 @@ extension ProxyConfigX on ProxyConfig {
     hysteria2: (c) => c.server,
   );
 
-  int get port => when(
+  int get port => map(
     vless: (c) => c.port,
     vmess: (c) => c.port,
     trojan: (c) => c.port,

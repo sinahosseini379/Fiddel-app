@@ -4,9 +4,10 @@ import 'package:fiddel/core/http_client/dio_http_client.dart';
 import 'package:fiddel/features/fiddel_tester/data/config_parser.dart';
 import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fiddel/core/http_client/http_client_provider.dart';
 
 final subscriptionFetcherProvider = Provider<SubscriptionFetcher>((ref) {
-  return SubscriptionFetcher(ref.read(dioHttpClientProvider));
+  return SubscriptionFetcher(ref.read(httpClientProvider));
 });
 
 class SubscriptionFetcher {
@@ -19,7 +20,6 @@ class SubscriptionFetcher {
       final response = await _httpClient.get(
         source.url,
         cancelToken: cancelToken,
-        options: Options(responseType: ResponseType.plain),
       );
       
       final uris = ConfigParser.decodeSubscription(response.data.toString());
@@ -64,7 +64,7 @@ class SubscriptionFetchResult {
     required this.sourceId,
     required this.uris,
     this.headers = const {},
-    required this.timestamp,
+    this.timestamp = 0,
     this.error,
   });
   

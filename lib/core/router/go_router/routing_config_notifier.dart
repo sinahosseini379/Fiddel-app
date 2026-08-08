@@ -31,6 +31,7 @@ import 'package:fiddel/features/fiddel_tester/overview/settings_page.dart';
 import 'package:fiddel/features/settings/overview/settings_page.dart';
 import 'package:fiddel/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:fiddel/features/settings/overview/sections/tls_tricks_page.dart';
 
 part 'routing_config_notifier.g.dart';
 

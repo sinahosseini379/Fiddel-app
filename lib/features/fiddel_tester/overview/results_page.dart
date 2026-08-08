@@ -8,6 +8,7 @@ import 'package:fiddel/features/fiddel_tester/widget/config_tile.dart';
 import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:flutter/scheduler.dart';
 
 class FiddelTesterResultsPage extends HookConsumerWidget {
   const FiddelTesterResultsPage({super.key});
@@ -26,7 +27,7 @@ class FiddelTesterResultsPage extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.science_off_rounded, size: 64, color: theme.colorScheme.onSurfaceVariant),
+              Icon(Icons.science_outlined, size: 64, color: theme.colorScheme.onSurfaceVariant),
               const Gap(16),
               Text(t.fiddelTester.noResults, style: theme.textTheme.headlineSmall),
               const Gap(8),

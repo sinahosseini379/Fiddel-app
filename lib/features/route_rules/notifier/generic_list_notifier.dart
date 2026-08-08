@@ -1,6 +1,7 @@
 import 'package:fiddel/core/notification/in_app_notification_controller.dart';
 import 'package:fiddel/features/route_rules/notifier/rule_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:drift/drift.dart';
 
 part 'generic_list_notifier.g.dart';
 

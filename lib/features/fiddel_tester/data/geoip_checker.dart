@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
 import 'package:meta/meta.dart';
 
@@ -33,12 +36,16 @@ class GeoIpChecker {
         final proxyDio = Dio(BaseOptions(
           connectTimeout: _timeout,
           receiveTimeout: _timeout,
-          proxy: Proxy(socksProxy),
         ));
+        proxyDio.httpClientAdapter = IOHttpClientAdapter(
+          createHttpClient: () => HttpClient()
+            ..findProxy = ((_) => 'PROXY $socksProxy')
+            ..badCertificateCallback = ((_, __, ___) => true),
+        );
 
         final response = await proxyDio.get(provider);
         if (response.statusCode == 200 && response.data is Map) {
-          final country = _parseCountry(response.data);
+          final country = _parseCountry(response.data as Map);
           if (country != null) {
             _cache[socksProxy] = country;
             return country;
@@ -110,7 +117,6 @@ class GeoIpChecker {
     'ZA': ('South Africa', '🇿🇦'),
     'AE': ('UAE', '🇦🇪'),
     'IL': ('Israel', '🇮🇱'),
-    'TR': ('Turkey', '🇹🇷'),
   };
 
   static (String, String) getCountryInfo(String code) {

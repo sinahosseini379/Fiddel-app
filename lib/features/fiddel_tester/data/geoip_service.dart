@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:fiddel/core/http_client/dio_http_client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fiddel/core/http_client/http_client_provider.dart';
 
 final geoIpProvider = Provider<GeoIpService>((ref) {
-  return GeoIpService(ref.read(dioHttpClientProvider));
+  return GeoIpService(ref.read(httpClientProvider));
 });
 
 class GeoIpService {
@@ -25,7 +26,6 @@ class GeoIpService {
       final ipResp = await _httpClient.get(
         'https://api.ipify.org',
         cancelToken: cancelToken,
-        options: Options(responseType: ResponseType.plain),
       );
       exitIp = ipResp.data.toString().trim();
       if (_cache.containsKey(exitIp)) return _cache[exitIp]!;
@@ -36,10 +36,6 @@ class GeoIpService {
         final resp = await _httpClient.get(
           url,
           cancelToken: cancelToken,
-          options: Options(
-            responseType: ResponseType.json,
-            validateStatus: (_) => true,
-          ),
         );
         
         if (resp.statusCode == 200 && resp.data is Map) {

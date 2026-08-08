@@ -7,6 +7,10 @@ import 'package:fiddel/features/fiddel_subscription/model/fiddel_config.dart';
 import 'package:fiddel/hiddifycore/hiddify_core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:drift/drift.dart';
+import 'package:fiddel/core/http_client/http_client_provider.dart';
+import 'package:fiddel/features/profile/data/profile_data_providers.dart';
+import 'package:fiddel/features/profile/notifier/active_profile_notifier.dart';
 
 part 'fiddel_subscription_notifier.g.dart';
 

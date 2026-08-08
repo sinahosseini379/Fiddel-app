@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:collection/collection.dart';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:fiddel/features/fiddel_tester/model/config_model.dart';
 import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
@@ -95,8 +98,12 @@ class UrlTester {
         connectTimeout: _connectTimeout,
         receiveTimeout: _requestTimeout,
         sendTimeout: _requestTimeout,
-        proxy: Proxy(socksProxy),
       ));
+      proxyDio.httpClientAdapter = IOHttpClientAdapter(
+        createHttpClient: () => HttpClient()
+          ..findProxy = ((_) => 'PROXY $socksProxy')
+          ..badCertificateCallback = ((_, __, ___) => true),
+      );
 
       final stopwatch = Stopwatch()..start();
       final response = await proxyDio.get(
@@ -116,7 +123,7 @@ class UrlTester {
   }
 
   Map<String, dynamic> _extractStealthInfo(ProxyConfig config) {
-    final transport = config.when(
+    final transport = config.map(
       vless: (c) => c.type ?? 'tcp',
       vmess: (c) => c.type ?? 'tcp',
       trojan: (c) => c.type ?? 'tcp',
@@ -124,15 +131,15 @@ class UrlTester {
       hysteria2: (_) => 'hysteria2',
     );
 
-    final security = config.when(
+    final security = config.map(
       vless: (c) => c.security ?? 'none',
       vmess: (c) => c.security ?? 'none',
-      trojan: (c) => c.security ?? 'tls',
+      trojan: (_) => 'tls',
       shadowsocks: (_) => 'none',
       hysteria2: (_) => 'tls',
     );
 
-    final fingerprint = config.when(
+    final fingerprint = config.map(
       vless: (c) => c.fingerprint ?? 'chrome',
       vmess: (_) => 'chrome',
       trojan: (c) => c.fingerprint ?? 'chrome',

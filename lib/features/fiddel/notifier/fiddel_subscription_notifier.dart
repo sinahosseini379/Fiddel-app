@@ -12,6 +12,9 @@ import 'package:fiddel/features/profile/model/profile_entity.dart';
 import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:dio/dio.dart';
+import 'package:fiddel/core/http_client/http_client_provider.dart';
+import 'package:fiddel/features/profile/data/profile_data_providers.dart';
 
 part 'fiddel_subscription_notifier.g.dart';
 
@@ -29,8 +32,8 @@ class FiddelSubscriptionNotifier extends _$FiddelSubscriptionNotifier {
     CancelToken? cancelToken,
   }) async {
     state = state.copyWith(isLoading: true, error: null, progress: 0);
-    final fetcher = FiddelSubscriptionFetcher(httpClient: ref.read(dioHttpClientProvider));
-    final tester = FiddelConfigTester(httpClient: ref.read(dioHttpClientProvider));
+    final fetcher = FiddelSubscriptionFetcher(httpClient: ref.read(httpClientProvider));
+    final tester = FiddelConfigTester(httpClient: ref.read(httpClientProvider));
 
     try {
       // Step 1: Fetch subscription
@@ -99,7 +102,7 @@ class FiddelSubscriptionNotifier extends _$FiddelSubscriptionNotifier {
 
     final parser = ProfileParser(
       ref: ref,
-      httpClient: ref.read(dioHttpClientProvider),
+      httpClient: ref.read(httpClientProvider),
     );
     final repo = ref.read(profileRepositoryProvider);
 
@@ -155,10 +158,10 @@ class FiddelSubscriptionNotifier extends _$FiddelSubscriptionNotifier {
 
 /// Provider for the fetcher
 final fiddelSubscriptionFetcherProvider = Provider<FiddelSubscriptionFetcher>((ref) {
-  return FiddelSubscriptionFetcher(httpClient: ref.read(dioHttpClientProvider));
+  return FiddelSubscriptionFetcher(httpClient: ref.read(httpClientProvider));
 });
 
 /// Provider for the tester
 final fiddelConfigTesterProvider = Provider<FiddelConfigTester>((ref) {
-  return FiddelConfigTester(httpClient: ref.read(dioHttpClientProvider));
+  return FiddelConfigTester(httpClient: ref.read(httpClientProvider));
 });

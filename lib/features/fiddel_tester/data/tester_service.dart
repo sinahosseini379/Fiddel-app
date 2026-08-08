@@ -66,7 +66,7 @@ class FiddelTesterService {
     onProgress?.call(TestProgress.tcpFilter('TCP filtering ${limitedConfigs.length} configs...'));
 
     // 2. TCP Filter
-    final tcpPassed = await _tcpTester.filterByTcp(
+    final tcpPassed = await TcpTester.filterByTcp(
       configs: limitedConfigs,
       minSuccess: settings.tcpPingMinSuccess,
       tries: settings.tcpPingTries,

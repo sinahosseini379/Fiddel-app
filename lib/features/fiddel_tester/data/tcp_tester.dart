@@ -5,6 +5,7 @@ import 'package:fiddel/features/fiddel_tester/model/config_model.dart';
 import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
 import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:meta/meta.dart';
+import 'dart:io';
 
 class TcpTester {
   static Future<int> testTcp(String host, int port, {int tries = 5, Duration timeout = const Duration(seconds: 5)}) async {

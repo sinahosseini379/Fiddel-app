@@ -36,6 +36,30 @@ class ConfigParser {
     }
   }
 
+  /// Decodes a raw subscription body into the list of proxy URI strings it
+  /// contains, handling the same base64 / JSON / plain-text shapes as
+  /// [parseSubscription] but without parsing each URI into a [ProxyConfig].
+  static List<String> decodeSubscription(String content) {
+    String text = content;
+
+    final decoded = _tryDecodeBase64(content);
+    if (decoded != null && _hasProtocolPrefix(decoded)) {
+      text = decoded;
+    } else {
+      try {
+        final uris = _extractUrisFromJson(jsonDecode(content));
+        if (uris.isNotEmpty) return uris;
+      } catch (_) {}
+    }
+
+    final seen = <String>{};
+    return text
+        .split('\n')
+        .map((l) => l.trim())
+        .where((l) => l.isNotEmpty && _hasProtocolPrefix(l) && seen.add(l))
+        .toList();
+  }
+
   static String? _tryDecodeBase64(String text) {
     try {
       final t = text.replaceAll(RegExp(r'\s+'), '');
@@ -55,13 +79,13 @@ class ConfigParser {
     final uris = <String>[];
     if (json is Map) {
       // sing-box format
-      for (final outbound in json['outbounds'] ?? []) {
-        final uri = _singboxToUri(outbound);
+      for (final outbound in (json['outbounds'] as List?) ?? const []) {
+        final uri = _singboxToUri(outbound as Map);
         if (uri != null) uris.add(uri);
       }
       // Clash format
-      for (final proxy in json['proxies'] ?? []) {
-        final uri = _clashToUri(proxy);
+      for (final proxy in (json['proxies'] as List?) ?? const []) {
+        final uri = _clashToUri(proxy as Map);
         if (uri != null) uris.add(uri);
       }
     } else if (json is List) {
