@@ -42,7 +42,7 @@ jobs:
       TARGET_NAME_aab: "Fiddel-Android"
     steps:
       - uses: actions/checkout@v6
-      - uses: subosito/flutter-action@v2.21.0 #issue with 2.13
+      - uses: subosito/[email protected] #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
@@ -77,7 +77,7 @@ jobs:
       TARGET_NAME_pkg: "Fiddel-MacOS-Installer"
       TARGET_NAME_ipa: "Fiddel-iOS"
 
-strategy:
+    strategy:
       fail-fast: false
       matrix:
         include:
@@ -153,7 +153,7 @@ strategy:
       #     flutter-version: ${{ env.FLUTTER_VERSION }}
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2.21.0 #issue with 2.13
+        uses: subosito/[email protected] #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           # flutter-version-file: pubspec.yaml
@@ -176,7 +176,6 @@ strategy:
           df -h
           sudo apt-get clean 
           df -h
-          tree
       
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
@@ -315,7 +314,7 @@ strategy:
 
               
       - name: Copy to out Android APK
-        if: matrix.platform == 'android-apk'
+        if: matrix.platform == 'android' && matrix.targets == 'apk'
         run: |
           mkdir out
           ls -R ./build/app/outputs
@@ -325,7 +324,7 @@ strategy:
           cp ./build/app/outputs/flutter-apk/app-release.apk out/${TARGET_NAME_apk}-universal.apk || echo "no universal apk"
 
       - name: Copy to out Android AAB
-        if: matrix.platform == 'android-aab'
+        if: matrix.platform == 'android' && matrix.targets == 'aab'
         run: |
           mkdir out
           ls -R ./build/app/outputs
@@ -367,7 +366,7 @@ strategy:
         if: env.UPLOAD_ARTIFACT == 'true'
         uses: actions/upload-artifact@v6
         with:
-          name: ${{matrix.platform}}
+          name: ${{ matrix.platform }}-${{ (matrix.targets == 'apk' && 'apk') || (matrix.targets == 'aab' && 'aab') || matrix.aarch }}
           path: ./out
           retention-days: 1
 
