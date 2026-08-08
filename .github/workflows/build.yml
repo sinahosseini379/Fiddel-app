@@ -76,6 +76,8 @@ jobs:
       TARGET_NAME_dmg: "Fiddel-MacOS"
       TARGET_NAME_pkg: "Fiddel-MacOS-Installer"
       TARGET_NAME_ipa: "Fiddel-iOS"
+      ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
+      WINDOWS_SIGNING_KEY: ${{ secrets.WINDOWS_SIGNING_KEY }}
 
     strategy:
       fail-fast: false
@@ -230,7 +232,7 @@ jobs:
           link-to-sdk: true
 
       - name: Setup Android Signing Properties
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') && secrets.ANDROID_SIGNING_KEY != '' }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') && env.ANDROID_SIGNING_KEY != '' }}
         run: |
           echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
           echo "storeFile=$(pwd)/android/key.jks" > android/key.properties
@@ -239,7 +241,7 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
 
       - name: Setup Windows Signing Properties
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && secrets.WINDOWS_SIGNING_KEY != '' }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && env.WINDOWS_SIGNING_KEY != '' }}
         run: |
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
@@ -267,7 +269,7 @@ jobs:
           make ${{ matrix.release_target }}
 
       - name: Code Sign
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && secrets.WINDOWS_SIGNING_KEY != '' }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && env.WINDOWS_SIGNING_KEY != '' }}
         uses: hiddify/signtool-code-sign-sha256@main
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
