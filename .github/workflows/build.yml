@@ -454,6 +454,9 @@ jobs:
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
     needs: [build]
     runs-on: ubuntu-latest
+    env:
+      TAG_NAME: "${{ inputs.tag-name }}"
+      TARGET_NAME_aab: "Fiddel-Android"
     steps:
       - name: checkout
         uses: actions/checkout@v6
@@ -482,7 +485,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # prerelease: ${{ env.CHANNEL == 'dev' }}
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           body_path: './release.md'
