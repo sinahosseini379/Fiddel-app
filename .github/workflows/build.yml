@@ -302,6 +302,8 @@ jobs:
           Get-ChildItem -Path out
           
       - name: Upload Debug Symbols
+        # Optional: needs SENTRY_AUTH_TOKEN/ORG/PROJECT. Never block the binaries on it.
+        continue-on-error: true
         if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -466,7 +468,7 @@ jobs:
           ls -R ./out
           ls -R ./.github/
           ls -R ./.git/
-          mv out/${TARGET_NAME_aab}.aab  fiddel-android-market.aab
+          mv out/${TARGET_NAME_aab}.aab fiddel-android-market.aab || echo 'no aab to rename'
 
       - name: prepare_release_message
         run: |
@@ -487,6 +489,7 @@ jobs:
         run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
 
       - name: Deploy to Google Play Internal Testers
+        continue-on-error: true
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
