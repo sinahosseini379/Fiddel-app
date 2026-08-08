@@ -38,6 +38,8 @@ jobs:
     outputs:
       draftBuildCode: ${{ steps.draftBuildCode.outputs.datetime }}
     runs-on: ubuntu-latest
+    env:
+      TARGET_NAME_aab: "Fiddel-Android"
     steps:
       - uses: actions/checkout@v6
       - uses: subosito/flutter-action@v2.21.0 #issue with 2.13
@@ -60,6 +62,18 @@ jobs:
     needs: test
     permissions: write-all
     continue-on-error: true
+    env:
+      TARGET_NAME_gz: "Fiddel-Linux-x64-AppImage.tar"
+      TARGET_NAME_AppImage: "Fiddel-Linux-x64-AppImage"
+      TARGET_NAME_deb: "Fiddel-Debian-x64"
+      TARGET_NAME_apk: "Fiddel-Android"
+      TARGET_NAME_aab: "Fiddel-Android"
+      TARGET_NAME_exe: "Fiddel-Windows-Setup-x64"
+      TARGET_NAME_msix: "Fiddel-Windows-x64"
+      TARGET_NAME_zip: "Fiddel-Windows-Portable-x64"
+      TARGET_NAME_dmg: "Fiddel-MacOS"
+      TARGET_NAME_pkg: "Fiddel-MacOS-Installer"
+      TARGET_NAME_ipa: "Fiddel-iOS"
 
     strategy:
       fail-fast: false
