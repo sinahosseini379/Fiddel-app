@@ -307,9 +307,8 @@ class RoutingConfigNotifier extends _$RoutingConfigNotifier {
                     ],
                   ],
                 ),
-],
+                  ],
                 ),
-              ),
               StatefulShellBranch(
                 routes: <GoRoute>[
                   GoRoute(
