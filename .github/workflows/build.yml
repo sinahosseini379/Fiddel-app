@@ -53,7 +53,7 @@ jobs:
 
       - name: make draftBuildCode
         id: draftBuildCode
-        run: echo "::set-output name=datetime::$(date +'%d.%H.%M')"
+        run: echo "datetime=$(date +'%d.%H.%M')" >> $GITHUB_OUTPUT
 
 
   build:
@@ -216,8 +216,16 @@ jobs:
           make ${{ matrix.platform }}-install-deps  
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
+      - name: Setup Android NDK
+        if: startsWith(matrix.platform,'android')
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: true
+          link-to-sdk: true
+
       - name: Setup Android Signing Properties
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') && secrets.ANDROID_SIGNING_KEY != '' }}
         run: |
           echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
           echo "storeFile=$(pwd)/android/key.jks" > android/key.properties
@@ -226,7 +234,7 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
 
       - name: Setup Windows Signing Properties
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && secrets.WINDOWS_SIGNING_KEY != '' }}
         run: |
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
@@ -254,7 +262,7 @@ jobs:
           make ${{ matrix.platform }}-release
 
       - name: Code Sign
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && secrets.WINDOWS_SIGNING_KEY != '' }}
         uses: hiddify/signtool-code-sign-sha256@main
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
@@ -263,7 +271,7 @@ jobs:
           folder: 'dist'
           timestamp-server: 'http://timestamp.digicert.com'
           recursive: true
-          description: 'Hiddify'
+          description: 'Fiddel'
 
       - name: Copy to out Windows
         if: matrix.platform == 'windows'
@@ -315,7 +323,7 @@ jobs:
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/bundle/release/app-release.aab out/hiddify-android-market.aab || echo "no aab"
+          cp ./build/app/outputs/bundle/release/app-release.aab out/${TARGET_NAME_aab}.aab || echo "no aab"
 
       - name: Copy to out unix
         if: startsWith(matrix.platform,'linux') || matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -399,7 +407,7 @@ jobs:
           set +e 
           sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md > release.md
           pip install gitchangelog pystache mustache markdown
-          prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-app/releases/latest" | grep -Po '"tag_name": "\K([^"]*)') 
+          prelease=$(curl --silent "https://api.github.com/repos/sinahosseini379/Fiddel-app/releases/latest" | grep -Po '"tag_name": "\K([^"]*)') 
           echo -e "\n\n<details markdown=1><summary>All changes from $current to the latest commit:</summary>\n\n">>release.md
           gitchangelog "${prelease}.." >> release.md  2>&1 || echo "Error in gitchangelog"
           echo -e "\n\n</details>">>release.md
@@ -417,16 +425,15 @@ jobs:
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_HIDDIFY_APP_REPO }}
-          GITHUB_REPOSITORY: hiddify/hiddify-app
+          GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_FIDDEL_APP_REPO }}
+          GITHUB_REPOSITORY: sinahosseini379/Fiddel-app
         with:
           files: ./out/*
           name: 'draft'
           tag_name: 'draft'
           body_path: './release.md'
-          target_commitish: '530bf77839a74d4f13847ba244a20734ac7ab119'
           prerelease: true
-          repository: hiddify/hiddify-app
+          repository: sinahosseini379/Fiddel-app
 
   upload-release:
     permissions: write-all
@@ -449,7 +456,7 @@ jobs:
           ls -R ./out
           ls -R ./.github/
           ls -R ./.git/
-          mv out/hiddify-android-market.aab  hiddify-android-market.aab
+          mv out/${TARGET_NAME_aab}.aab  fiddel-android-market.aab
 
       - name: prepare_release_message
         run: |
@@ -474,9 +481,9 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: app.hiddify.com
+          packageName: app.fiddel.com
           releaseName: ${{ env.TAG_NAME }}
-          releaseFiles: ./hiddify-android-market.aab
+          releaseFiles: ./fiddel-android-market.aab
           track: 'beta'
 
 
@@ -501,13 +508,13 @@ jobs:
 
       - uses: Apple-Actions/download-provisioning-profiles@v1
         with:
-          bundle-id: app.hiddify.com
+          bundle-id: app.fiddel.com
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
       - uses: Apple-Actions/download-provisioning-profiles@v1
         with:
-          bundle-id: app.hiddify.com.SingBoxPacketTunnel
+          bundle-id: app.fiddel.com.SingBoxPacketTunnel
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
@@ -522,7 +529,7 @@ jobs:
 
       - uses: Apple-Actions/upload-testflight-build@v4
         with:
-          app-path: 'out/Hiddify-iOS.ipa' 
+          app-path: 'out/Fiddel-iOS.ipa' 
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
