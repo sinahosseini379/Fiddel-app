@@ -50,6 +50,8 @@ jobs:
           
       - name: Prepare
         run: make linux-amd64-prepare
+      - name: Generate code
+        run: make gen
       - name: Test
         run: flutter test
 
@@ -75,49 +77,39 @@ jobs:
       TARGET_NAME_pkg: "Fiddel-MacOS-Installer"
       TARGET_NAME_ipa: "Fiddel-iOS"
 
-    strategy:
+strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: android-apk
+          - platform: android
+            release_target: android-apk-release
+            install_deps_target: android-install-deps
             os: ubuntu-latest
             targets: apk
 
-          - platform: android-aab
+          - platform: android
+            release_target: android-aab-release
+            install_deps_target: android-install-deps
             os: ubuntu-latest
             targets: aab
 
           - platform: windows
+            release_target: windows-release
+            install_deps_target: windows-install-deps
             os: windows-latest
             aarch: amd64
             targets: exe,msix,zip
 
           - platform: linux
+            release_target: linux-release
+            install_deps_target: linux-install-deps
             os: ubuntu-22.04
             aarch: amd64
             targets: deb,gz,AppImage
 
-          # - platform: linux-amd64
-          #   os: ubuntu-22.04
-          #   aarch: amd64
-          #   targets: deb,gz
-
-          # - platform: linux-arm64
-          #   os: ubuntu-24.04-arm
-          #   aarch: arm64
-          #   targets: deb,gz
-
-          # - platform: linux-amd64-musl
-          #   os: ubuntu-22.04
-          #   aarch: amd64
-          #   targets: deb,gz
-
-          # - platform: linux-arm64-musl
-          #   os: ubuntu-24.04-arm
-          #   aarch: arm64
-          #   targets: deb,gz
-            
           - platform: macos
+            release_target: macos-release
+            install_deps_target: macos-install-deps
             os: macos-15
             aarch: universal
             targets: dmg,pkg
@@ -227,7 +219,7 @@ jobs:
                   
       - name: Setup dependencies
         run: |
-          make ${{ matrix.platform }}-install-deps  
+          make ${{ matrix.install_deps_target }}  
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
 
       - name: Setup Android NDK
@@ -273,7 +265,7 @@ jobs:
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
-          make ${{ matrix.platform }}-release
+          make ${{ matrix.release_target }}
 
       - name: Code Sign
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') && secrets.WINDOWS_SIGNING_KEY != '' }}
