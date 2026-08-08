@@ -1,6 +1,6 @@
 ﻿{
   "common": {
-    "appTitle": "Hiddify",
+    "appTitle": "Fiddel",
     "start": "Start",
     "version": "Version",
     "ok": "OK",
@@ -546,9 +546,23 @@
           "selectProfile": "Select profile",
           "conduitPairingId": "Conduit pairing ID"
         }
+      },
+      "fiddel": {
+        "title": "Fiddel USA",
+        "subtitle": "Auto-fetch and test free USA configs"
       }
     }
   },
+  "pages": {
+    "fiddel": {
+      "title": "Fiddel USA",
+      "loadingSubscription": "Fetching subscription...",
+      "testingConfigs": "Testing configs (${tested}/${total})",
+      "noWorkingConfigs": "No working configs found",
+      "stealthScore": "Stealth: ${score}",
+      "addToProfiles": "Add ${count} configs to profiles",
+      "addedSuccess": "Successfully added ${count} configs to profiles"
+    },
   "components": {
     "stats": {
       "connection": "Connection",

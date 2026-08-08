@@ -174,6 +174,12 @@ class SettingsPage extends HookConsumerWidget {
             icon: Icons.content_cut_rounded,
             namedLocation: context.namedLocation('tlsTricks'),
           ),
+          SettingsSection(
+            title: t.pages.settings.fiddel.title,
+            icon: Icons.auto_fix_high,
+            subtitle: Text(t.pages.settings.fiddel.subtitle),
+            namedLocation: context.namedLocation('fiddel'),
+          ),
           if (PlatformUtils.isIOS)
             Material(
               child: ListTile(

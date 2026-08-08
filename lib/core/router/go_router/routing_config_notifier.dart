@@ -25,7 +25,7 @@ import 'package:hiddify/features/settings/overview/sections/dns_options_page.dar
 import 'package:hiddify/features/settings/overview/sections/general_page.dart';
 import 'package:hiddify/features/settings/overview/sections/inbound_options_page.dart';
 import 'package:hiddify/features/settings/overview/sections/routing_options_page.dart';
-import 'package:hiddify/features/settings/overview/sections/tls_tricks_page.dart';
+import 'package:hiddify/features/fiddel/widget/fiddel_subscription_page.dart';
 import 'package:hiddify/features/settings/overview/settings_page.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -261,6 +261,12 @@ class RoutingConfigNotifier extends _$RoutingConfigNotifier {
                       path: 'tls-tricks',
                       pageBuilder: (_, state) =>
                           customTransition(TransitionType.slide, state.pageKey, const TlsTricksPage()),
+                    ),
+                    GoRoute(
+                      name: 'fiddel',
+                      path: 'fiddel',
+                      pageBuilder: (_, state) =>
+                          customTransition(TransitionType.slide, state.pageKey, const FiddelSubscriptionPage()),
                     ),
                     GoRoute(
                       name: 'chainOptions',
