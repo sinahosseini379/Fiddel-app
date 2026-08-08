@@ -547,11 +547,46 @@
           "conduitPairingId": "Conduit pairing ID"
         }
       },
-      "fiddel": {
-        "title": "Fiddel USA",
-        "subtitle": "Auto-fetch and test free USA configs"
-      }
-    }
+      "fiddelTester": {
+        "title": "Fiddel Tester",
+        "subtitle": "Test and select best free VPN configs",
+        "quickActions": "Quick Actions",
+        "runTest": "Run Test",
+        "runTestDesc": "Download, test and select best configs",
+        "addSubscription": "Add Subscription",
+        "addSubscriptionDesc": "Add a new subscription URL to test",
+        "noSubscriptions": "No subscriptions added",
+        "noSubscriptionsDesc": "Add a subscription URL to start testing",
+        "subscriptions": "Subscriptions",
+        "tested": "Tested",
+        "selected": "Selected",
+        "countries": "Countries",
+        "lastResult": "Last Test Result",
+        "viewDetails": "View Details",
+        "summary": "Summary",
+        "all": "All",
+        "selected": "Selected",
+        "export": "Export",
+        "settings": "Settings",
+        "testSettings": "Test Settings",
+        "advancedSettings": "Advanced Settings",
+        "testTargets": "Test Targets",
+        "configsPerCountry": "Configs per country",
+        "urlTestRounds": "URL test rounds",
+        "tcpPingTries": "TCP ping tries",
+        "tcpPingMinSuccess": "Min TCP success",
+        "allowInsecure": "Allow insecure TLS",
+        "allowInsecureDesc": "Accept self-signed/expired certificates",
+        "incremental": "Incremental mode",
+        "incrementalDesc": "Keep working configs from previous runs",
+        "maxErrorRate": "Max error rate",
+        "stealthMinScore": "Min stealth score",
+        "stealthMode": "Stealth mode",
+        "addTarget": "Add Test Target",
+        "errorRate": "Error Rate",
+        "avgLatency": "Avg Latency",
+        "p95Latency": "P95 Latency",
+      },
   },
   "pages": {
     "fiddel": {

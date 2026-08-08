@@ -25,7 +25,9 @@ import 'package:hiddify/features/settings/overview/sections/dns_options_page.dar
 import 'package:hiddify/features/settings/overview/sections/general_page.dart';
 import 'package:hiddify/features/settings/overview/sections/inbound_options_page.dart';
 import 'package:hiddify/features/settings/overview/sections/routing_options_page.dart';
-import 'package:hiddify/features/fiddel/widget/fiddel_subscription_page.dart';
+import 'package:hiddify/features/fiddel_tester/overview/fiddel_tester_page.dart';
+import 'package:hiddify/features/fiddel_tester/overview/results_page.dart';
+import 'package:hiddify/features/fiddel_tester/overview/settings_page.dart';
 import 'package:hiddify/features/settings/overview/settings_page.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -39,6 +41,7 @@ final branchesScope = <String, FocusScopeNode>{
   'settings': FocusScopeNode(),
   'logs': FocusScopeNode(),
   'about': FocusScopeNode(),
+  'fiddelTester': FocusScopeNode(),
 };
 
 // when the routing config is not yet initialized, this config is used
@@ -47,12 +50,12 @@ final loadingConfig = RoutingConfig(
 );
 
 String getNameOfBranch(bool isMobileBreakpoint, bool showProfilesAction, int index) => isMobileBreakpoint
-    ? ['home', 'settings'][index]
-    : ['home', if (showProfilesAction) 'profiles', 'settings', 'logs', 'about'][index];
+    ? ['home', 'settings', 'fiddelTester'][index]
+    : ['home', if (showProfilesAction) 'profiles', 'settings', 'fiddelTester', 'logs', 'about'][index];
 
 int getIndexOfBranch(bool isMobileBreakpoint, bool showProfilesAction, String name) => isMobileBreakpoint
-    ? ['home', 'settings'].indexOf(name)
-    : ['home', if (showProfilesAction) 'profiles', 'settings', 'logs', 'about'].indexOf(name);
+    ? ['home', 'settings', 'fiddelTester'].indexOf(name)
+    : ['home', if (showProfilesAction) 'profiles', 'settings', 'fiddelTester', 'logs', 'about'].indexOf(name);
 
 @Riverpod(keepAlive: true)
 class RoutingConfigNotifier extends _$RoutingConfigNotifier {
@@ -263,10 +266,24 @@ class RoutingConfigNotifier extends _$RoutingConfigNotifier {
                           customTransition(TransitionType.slide, state.pageKey, const TlsTricksPage()),
                     ),
                     GoRoute(
-                      name: 'fiddel',
-                      path: 'fiddel',
+                      name: 'fiddelTester',
+                      path: 'fiddel-tester',
                       pageBuilder: (_, state) =>
-                          customTransition(TransitionType.slide, state.pageKey, const FiddelSubscriptionPage()),
+                          customTransition(TransitionType.slide, state.pageKey, const FiddelTesterOverview()),
+                      routes: <GoRoute>[
+                        GoRoute(
+                          name: 'fiddelTesterResults',
+                          path: 'results',
+                          pageBuilder: (_, state) =>
+                              customTransition(TransitionType.slide, state.pageKey, const FiddelTesterResultsPage()),
+                        ),
+                        GoRoute(
+                          name: 'fiddelTesterSettings',
+                          path: 'settings',
+                          pageBuilder: (_, state) =>
+                              customTransition(TransitionType.slide, state.pageKey, const FiddelTesterSettingsPage()),
+                        ),
+                      ],
                     ),
                     GoRoute(
                       name: 'chainOptions',
@@ -290,9 +307,33 @@ class RoutingConfigNotifier extends _$RoutingConfigNotifier {
                     ],
                   ],
                 ),
-              ],
-            ),
-            if (!isMobileBreakpoint) ...[
+],
+                ),
+              ),
+              StatefulShellBranch(
+                routes: <GoRoute>[
+                  GoRoute(
+                    name: 'fiddelTester',
+                    path: '/fiddel-tester',
+                    builder: (_, _) => FocusScope(node: branchesScope['fiddelTester'], child: const FiddelTesterOverview()),
+                    routes: <GoRoute>[
+                      GoRoute(
+                        name: 'fiddelTesterResults',
+                        path: 'results',
+                        pageBuilder: (_, state) =>
+                            customTransition(TransitionType.slide, state.pageKey, const FiddelTesterResultsPage()),
+                      ),
+                      GoRoute(
+                        name: 'fiddelTesterSettings',
+                        path: 'settings',
+                        pageBuilder: (_, state) =>
+                            customTransition(TransitionType.slide, state.pageKey, const FiddelTesterSettingsPage()),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              if (!isMobileBreakpoint) ...[
               StatefulShellBranch(
                 routes: <GoRoute>[
                   GoRoute(
