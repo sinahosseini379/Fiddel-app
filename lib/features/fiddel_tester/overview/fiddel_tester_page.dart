@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:fiddel/core/localization/translations.dart';
 import 'package:fiddel/core/router/go_router/helper/active_breakpoint_notifier.dart';
-import 'package:fiddel/features/fiddel_tester/overview/fiddel_tester_page.dart';
+import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:fiddel/features/settings/overview/settings_page.dart';
 import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
