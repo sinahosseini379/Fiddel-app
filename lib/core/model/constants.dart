@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:hiddify/utils/utils.dart';
 
 abstract class Constants {
-  static const appName = "Hiddify";
-  static const githubUrl = "https://github.com/hiddify/hiddify-next";
-  static const licenseUrl = "https://github.com/hiddify/hiddify-next?tab=License-1-ov-file#readme";
-  static const githubReleasesApiUrl = "https://api.github.com/repos/hiddify/hiddify-next/releases";
-  static const githubLatestReleaseUrl = "https://github.com/hiddify/hiddify-app/releases/latest";
-  static const appCastUrl = "https://raw.githubusercontent.com/hiddify/hiddify-next/main/appcast.xml";
-  static const telegramChannelUrl = "https://t.me/hiddify";
-  static const privacyPolicyUrl = "https://hiddify.com/privacy-policy/";
-  static const termsAndConditionsUrl = "https://hiddify.com/terms/";
+  static const appName = "Fiddel";
+  static const githubUrl = "https://github.com/sinahosseini379/Fiddel-app";
+  static const licenseUrl = "https://github.com/sinahosseini379/Fiddel-app?tab=License-1-ov-file#readme";
+  static const githubReleasesApiUrl = "https://api.github.com/repos/sinahosseini379/Fiddel-app/releases";
+  static const githubLatestReleaseUrl = "https://github.com/sinahosseini379/Fiddel-app/releases/latest";
+  static const appCastUrl = "https://raw.githubusercontent.com/sinahosseini379/Fiddel-app/main/appcast.xml";
+  static const telegramChannelUrl = "https://t.me/fiddel"; // Update as needed
+  static const privacyPolicyUrl = "https://fiddel.com/privacy-policy/";
+  static const termsAndConditionsUrl = "https://fiddel.com/terms/";
   static const cfWarpPrivacyPolicy = "https://www.cloudflare.com/application/privacypolicy/";
   static const cfWarpTermsOfService = "https://www.cloudflare.com/application/terms/";
 }
