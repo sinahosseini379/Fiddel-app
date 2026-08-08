@@ -10,6 +10,8 @@ class TestTarget with _$TestTarget {
     required String url,
     @Default(1.0) double weight,
   }) = _TestTarget;
+
+  factory TestTarget.fromJson(Map<String, dynamic> json) => _$TestTargetFromJson(json);
 }
 
 @freezed
@@ -19,6 +21,8 @@ class TargetStat with _$TargetStat {
     required int fail,
     @Default([]) List<int> latencies,
   }) = _TargetStat;
+
+  factory TargetStat.fromJson(Map<String, dynamic> json) => _$TargetStatFromJson(json);
 }
 
 @freezed

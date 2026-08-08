@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:hiddify/features/fiddel_tester/model/test_result.dart';
+import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
 import 'package:meta/meta.dart';
 
 class GeoIpChecker {

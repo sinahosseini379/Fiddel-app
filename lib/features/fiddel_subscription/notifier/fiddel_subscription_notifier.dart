@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/fiddel_subscription/data/fiddel_subscription_fetcher.dart';
-import 'package:hiddify/features/fiddel_subscription/model/fiddel_config.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/fiddel_subscription/data/fiddel_subscription_fetcher.dart';
+import 'package:fiddel/features/fiddel_subscription/model/fiddel_config.dart';
+import 'package:fiddel/hiddifycore/hiddify_core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,19 +1,19 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/haptic/haptic_service.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/utils/throttler.dart';
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
-import 'package:hiddify/features/proxy/data/proxy_repository.dart';
-import 'package:hiddify/features/proxy/model/ip_info_entity.dart' as oldipinfo;
-import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
+import 'package:fiddel/core/haptic/haptic_service.dart';
+import 'package:fiddel/core/model/constants.dart';
+import 'package:fiddel/core/preferences/general_preferences.dart';
+import 'package:fiddel/core/utils/throttler.dart';
+import 'package:fiddel/features/connection/notifier/connection_notifier.dart';
+import 'package:fiddel/features/proxy/data/proxy_data_providers.dart';
+import 'package:fiddel/features/proxy/data/proxy_repository.dart';
+import 'package:fiddel/features/proxy/model/ip_info_entity.dart' as oldipinfo;
+import 'package:fiddel/features/proxy/model/proxy_failure.dart';
+import 'package:fiddel/hiddifycore/generated/v2/hcore/hcore.pb.dart';
 
-import 'package:hiddify/utils/riverpod_utils.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/utils/riverpod_utils.dart';
+import 'package:fiddel/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 

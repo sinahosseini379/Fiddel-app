@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.dart';
-import 'package:hiddify/features/fiddel/widget/fiddel_subscription_page.dart';
-import 'package:hiddify/gen/assets.gen.dart';
+import 'package:fiddel/core/localization/translations.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.dart';
+import 'package:fiddel/features/fiddel/widget/fiddel_subscription_page.dart';
+import 'package:fiddel/gen/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FiddelConfigCard extends HookConsumerWidget {

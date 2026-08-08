@@ -3,10 +3,10 @@ import 'dart:typed_data';
 
 import 'package:dartx/dartx.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.dart';
+import 'package:fiddel/features/profile/data/profile_parser.dart';
+import 'package:fiddel/singbox/model/singbox_proxy_type.dart';
+import 'package:fiddel/utils/utils.dart';
 
 class FiddelSubscriptionParser {
   static const List<String> supportedSchemes = [

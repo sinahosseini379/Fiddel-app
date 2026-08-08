@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/core/utils/exception_handler.dart';
-import 'package:hiddify/features/proxy/model/ip_info_entity.dart' as oldipinfo;
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/core/utils/exception_handler.dart';
+import 'package:fiddel/features/proxy/model/ip_info_entity.dart' as oldipinfo;
 
-import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
+import 'package:fiddel/features/proxy/model/proxy_failure.dart';
+import 'package:fiddel/hiddifycore/generated/v2/hcore/hcore.pb.dart';
+import 'package:fiddel/hiddifycore/hiddify_core_service.dart';
+import 'package:fiddel/utils/custom_loggers.dart';
 
 abstract interface class ProxyRepository {
   // Stream<Either<ProxyFailure, List<OutboundGroup>>> watchProxies();

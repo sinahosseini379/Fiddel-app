@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'test_result.dart';
+
 part 'subscription.freezed.dart';
 part 'subscription.g.dart';
 

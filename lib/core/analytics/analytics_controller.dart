@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:hiddify/core/analytics/analytics_filter.dart';
-import 'package:hiddify/core/analytics/analytics_logger.dart';
+import 'package:fiddel/core/analytics/analytics_filter.dart';
+import 'package:fiddel/core/analytics/analytics_logger.dart';
 
-import 'package:hiddify/core/logger/logger_controller.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/preferences/preferences_provider.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
+import 'package:fiddel/core/logger/logger_controller.dart';
+import 'package:fiddel/core/model/environment.dart';
+import 'package:fiddel/core/preferences/preferences_provider.dart';
+import 'package:fiddel/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final geoIpProvider = Provider<GeoIpService>((ref) {

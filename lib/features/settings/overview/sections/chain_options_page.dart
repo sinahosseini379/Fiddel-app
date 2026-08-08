@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/optional_range.dart';
-import 'package:hiddify/features/chain/model/chain_enum.dart';
-import 'package:hiddify/features/chain/notifier/chain_profile_notifier.dart';
-import 'package:hiddify/features/chain/overview/chain_timeline.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/profile/overview/profiles_notifier.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/preference_tile.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/core/localization/translations.dart';
+import 'package:fiddel/core/model/optional_range.dart';
+import 'package:fiddel/features/chain/model/chain_enum.dart';
+import 'package:fiddel/features/chain/notifier/chain_profile_notifier.dart';
+import 'package:fiddel/features/chain/overview/chain_timeline.dart';
+import 'package:fiddel/features/profile/model/profile_entity.dart';
+import 'package:fiddel/features/profile/notifier/active_profile_notifier.dart';
+import 'package:fiddel/features/profile/overview/profiles_notifier.dart';
+import 'package:fiddel/features/settings/data/config_option_repository.dart';
+import 'package:fiddel/features/settings/widget/preference_tile.dart';
+import 'package:fiddel/singbox/model/singbox_config_enum.dart';
+import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChainOptionsPage extends HookConsumerWidget {

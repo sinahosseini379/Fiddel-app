@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/features/fiddel_tester/model/config_model.dart';
-import 'package:hiddify/features/fiddel_tester/model/test_result.dart';
-import 'package:hiddify/features/fiddel_tester/model/subscription.dart';
+import 'package:fiddel/features/fiddel_tester/model/config_model.dart';
+import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
+import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:meta/meta.dart';
 
 class TcpTester {

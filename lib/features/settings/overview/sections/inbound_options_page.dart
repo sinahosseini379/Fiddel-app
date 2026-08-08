@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/lan_sharing_tile.dart';
-import 'package:hiddify/features/settings/widget/preference_tile.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/core/localization/translations.dart';
+import 'package:fiddel/features/settings/data/config_option_repository.dart';
+import 'package:fiddel/features/settings/widget/lan_sharing_tile.dart';
+import 'package:fiddel/features/settings/widget/preference_tile.dart';
+import 'package:fiddel/singbox/model/singbox_config_enum.dart';
+import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InboundOptionsPage extends HookConsumerWidget with AppLogger {

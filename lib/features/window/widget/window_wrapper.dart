@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/preferences/actions_at_closing.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/router/go_router/go_router_notifier.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:fiddel/core/preferences/actions_at_closing.dart';
+import 'package:fiddel/core/preferences/general_preferences.dart';
+import 'package:fiddel/core/router/dialog/dialog_notifier.dart';
+import 'package:fiddel/core/router/go_router/go_router_notifier.dart';
+import 'package:fiddel/features/window/notifier/window_notifier.dart';
+import 'package:fiddel/utils/custom_loggers.dart';
+import 'package:fiddel/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 

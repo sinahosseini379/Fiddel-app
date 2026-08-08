@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/fiddel/data/fiddel_config_tester.dart';
-import 'package:hiddify/features/fiddel/data/fiddel_subscription_fetcher.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.g.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/profile/data/profile_repository.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/fiddel/data/fiddel_config_tester.dart';
+import 'package:fiddel/features/fiddel/data/fiddel_subscription_fetcher.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.g.dart';
+import 'package:fiddel/features/profile/data/profile_parser.dart';
+import 'package:fiddel/features/profile/data/profile_repository.dart';
+import 'package:fiddel/features/profile/model/profile_entity.dart';
+import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

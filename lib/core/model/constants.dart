@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/utils/utils.dart';
 
 abstract class Constants {
   static const appName = "Fiddel";

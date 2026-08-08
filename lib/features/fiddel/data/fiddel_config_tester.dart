@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.g.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.g.dart';
+import 'package:fiddel/features/profile/data/profile_parser.dart';
 
 /// Simple HTTP-based config tester using the app's proxy infrastructure
 class FiddelConfigTester {

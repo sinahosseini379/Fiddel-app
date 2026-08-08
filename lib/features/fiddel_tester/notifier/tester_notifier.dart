@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/features/fiddel_tester/data/tester_service.dart';
-import 'package:hiddify/features/fiddel_tester/model/subscription.dart';
-import 'package:hiddify/features/fiddel_tester/model/test_result.dart';
+import 'package:fiddel/features/fiddel_tester/data/tester_service.dart';
+import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
+import 'package:fiddel/features/fiddel_tester/model/test_result.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meta/meta.dart';
 

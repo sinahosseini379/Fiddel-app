@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "appTitle": "Fiddel",
     "start": "Start",
@@ -565,7 +565,6 @@
         "viewDetails": "View Details",
         "summary": "Summary",
         "all": "All",
-        "selected": "Selected",
         "export": "Export",
         "settings": "Settings",
         "testSettings": "Test Settings",
@@ -585,10 +584,9 @@
         "addTarget": "Add Test Target",
         "errorRate": "Error Rate",
         "avgLatency": "Avg Latency",
-        "p95Latency": "P95 Latency",
-      },
-  },
-  "pages": {
+        "p95Latency": "P95 Latency"
+      }
+    },
     "fiddel": {
       "title": "Fiddel USA",
       "loadingSubscription": "Fetching subscription...",
@@ -597,7 +595,8 @@
       "stealthScore": "Stealth: ${score}",
       "addToProfiles": "Add ${count} configs to profiles",
       "addedSuccess": "Successfully added ${count} configs to profiles"
-    },
+    }
+  },
   "components": {
     "stats": {
       "connection": "Connection",

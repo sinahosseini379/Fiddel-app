@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:dartx/dartx.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/fiddel_subscription/model/fiddel_config.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/profile/data/profile_parser.dart';
+import 'package:fiddel/features/fiddel_subscription/model/fiddel_config.dart';
+import 'package:fiddel/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meta/meta.dart';
 

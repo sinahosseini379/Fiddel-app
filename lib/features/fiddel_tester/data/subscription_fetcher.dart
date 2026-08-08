@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/fiddel_tester/data/config_parser.dart';
-import 'package:hiddify/features/fiddel_tester/model/subscription.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/fiddel_tester/data/config_parser.dart';
+import 'package:fiddel/features/fiddel_tester/model/subscription.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final subscriptionFetcherProvider = Provider<SubscriptionFetcher>((ref) {

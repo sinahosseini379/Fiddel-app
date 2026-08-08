@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
+import 'package:fiddel/features/profile/model/profile_entity.dart';
 
 part 'fiddel_config.freezed.dart';
 part 'fiddel_config.g.dart';

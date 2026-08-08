@@ -3,9 +3,9 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/features/fiddel/data/fiddel_subscription_parser.dart';
-import 'package:hiddify/features/fiddel/model/fiddel_config.dart';
+import 'package:fiddel/core/http_client/dio_http_client.dart';
+import 'package:fiddel/features/fiddel/data/fiddel_subscription_parser.dart';
+import 'package:fiddel/features/fiddel/model/fiddel_config.dart';
 
 class FiddelSubscriptionFetcher {
   FiddelSubscriptionFetcher({required DioHttpClient httpClient}) : _httpClient = httpClient;
